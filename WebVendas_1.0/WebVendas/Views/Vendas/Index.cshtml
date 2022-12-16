@@ -1,0 +1,61 @@
+﻿@model IEnumerable<WebVendas.Models.Venda>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Vendas Registradas</h2>
+
+<p>
+    @Html.ActionLink("Registrar Nova Venda", "Create")
+
+</p>
+<p>
+    @Html.TextBox("searchString")<input type="submit" value="Filtrar"/>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Cliente: ")
+        </th>
+        <th>
+            @Html.DisplayName("Produto: ")
+        </th>
+        <th>
+            @Html.DisplayName("Quantidade: ")
+        </th>
+        <th>
+            @Html.DisplayName("Valor do Pedido: ")
+        </th>
+        <th>
+            @Html.DisplayName("Endereço para Envio: ")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.cliente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.produto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantidade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ValorTotalPedido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EnderecoEnvio)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" }) 
+            @Html.ActionLink("Detalhes", "Details", new { id = item.Id }, new { @class = "btn btn-sucess" })
+            @Html.ActionLink("Deletar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>
